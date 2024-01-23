@@ -20,21 +20,26 @@ namespace Into_the_depths
     /// </summary>
     public partial class MainWindow : Window
     {
+        Frame frame;
         public MainWindow()
         {
             InitializeComponent();
+            CharCreate();
 
         }
-        private void OpenCharCreate_Click(object sender, RoutedEventArgs e)
+
+        private void CharCreate()
         {
-            var frame = new Frame();
-            this.Content = frame;
-            frame.Navigate(new CharacterCreation());
-            var s = new SaveSelection();
-            s.ShowDialog();
-        }  
-    
+            frame = new Frame();
+            frame.HorizontalAlignment = HorizontalAlignment.Stretch;
+            frame.VerticalAlignment = VerticalAlignment.Stretch;
+            AddChild(frame);
+            frame.Navigate(new CharacterCreation(this));
+        }
 
-
-    }    
+        public void closeCharCreatePage()
+        {
+            Content = null;
+        }
+    }
 }

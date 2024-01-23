@@ -8,7 +8,152 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CharacterCreation">
 
-    <Grid>
-        <Button Content="Hej"></Button>
-    </Grid>
+    <Canvas Background="#FFE1D2D2">
+        <StackPanel Width="auto" Height="auto" Canvas.Left="60" Canvas.Top="37">
+            <TextBlock><Run Text="Choose class:"/></TextBlock>
+            <RadioButton Name="RBPaladin" Content="Paladin" IsChecked="True"/>
+            <RadioButton Name="RBWarrior" Content="Warrior"/>
+            <RadioButton Name="RBRogue" Content="Rogue"/>
+            <RadioButton Name="RBRanger" Content="Ranger"/>
+            <RadioButton Name="RBMage" Content="Mage"/>
+            <RadioButton Name="RBPriest" Content="Priest"/>
+        </StackPanel>
+        <StackPanel Height="auto" Width="auto" Canvas.Left="241" Canvas.Top="37" Orientation="Horizontal">
+            <TextBlock>Name:</TextBlock>
+            <TextBox Name="CharName" Width="100" Margin="10,0,0,0"></TextBox>
+        </StackPanel>
+        <Grid Canvas.Left="241" Canvas.Top="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Strength-->
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">Strength</TextBlock>
+            <Button 
+               Name="StrPlus" 
+               Content="+"
+               Click="StrPlus_Click"
+               Grid.Column="1" Grid.Row="0" Margin="0,0,10,0" Width="20" Height="20">
+            </Button>
+            <TextBlock 
+               Name="StrValue" 
+               Grid.Column="2" 
+               Grid.Row="0" 
+               Margin="0,0,10,0">12</TextBlock>
+            <Button 
+               Name="StrMinus" 
+               Content="-"
+               Click="StrMinus_Click"
+               Grid.Column="3" Grid.Row="0" Margin="0,0,10,0" Height="20" Width="20">
+            </Button>
+
+            <!--Agility-->
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">Agility</TextBlock>
+            <Button 
+               Name="AgiPlus" 
+               Content="+"
+               Click="AgiPlus_Click"
+               Grid.Column="1" Grid.Row="1" Margin="0,0,10,0" Width="20" Height="20">
+            </Button>
+            <TextBlock Name="AgiValue" Grid.Column="2" Grid.Row="1" Margin="0,0,10,0">12</TextBlock>
+            <Button 
+               Name="AgiMinus" 
+               Content="-"
+               Click="AgiMinus_Click"
+               Grid.Column="3" Grid.Row="1" Margin="0,0,10,0" Height="20" Width="20">
+            </Button>
+
+            <!--Intellect-->
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">Intellect</TextBlock>
+            <Button 
+               Name="IntPlus" 
+               Content="+"
+               Click="IntPlus_Click"
+               Grid.Column="1" Grid.Row="2" Margin="0,0,10,0" Width="20" Height="20">
+            </Button>
+            <TextBlock Name="IntValue" Grid.Column="2" Grid.Row="2" Margin="0,0,10,0">12</TextBlock>
+            <Button 
+               Name="IntMinus" 
+               Content="-"
+               Click="IntMinus_Click"
+               Grid.Column="3" Grid.Row="2" Margin="0,0,10,0" Height="20" Width="20">
+            </Button>
+
+            <!--Spirit-->
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,0,10,0">Spirit</TextBlock>
+            <Button 
+               Name="SpiPlus" 
+               Content="+"
+               Click="SpiPlus_Click"
+               Grid.Column="1" Grid.Row="3" Margin="0,0,10,0" Width="20" Height="20">
+            </Button>
+            <TextBlock Name="SpiValue" Grid.Column="2" Grid.Row="3" Margin="0,0,10,0">12</TextBlock>
+            <Button 
+               Name="SpiMinus" 
+               Content="-"
+               Click="SpiMinus_Click"
+               Grid.Column="3" Grid.Row="3" Margin="0,0,10,0" Height="20" Width="20">
+            </Button>
+
+            <!--Stamina-->
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,10,0">Stamina</TextBlock>
+            <Button 
+               Name="StaPlus" 
+               Content="+"
+               Click="StaPlus_Click"
+               Grid.Column="1" Grid.Row="4" Margin="0,0,10,0" Width="20" Height="20">
+            </Button>
+            <TextBlock Name="StaValue" Grid.Column="2" Grid.Row="4" Margin="0,0,10,0">12</TextBlock>
+            <Button 
+               Name="StaMinus" 
+               Content="-"
+               Click="StaMinus_Click"
+               Grid.Column="3" Grid.Row="4" Margin="0,0,10,0" Height="20" Width="20">
+            </Button>
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" Canvas.Left="241" Canvas.Top="165">
+            <TextBlock ><Run Text="Unassigned points:"/></TextBlock>
+            <TextBlock Name="unassignedText" Margin="10,0,0,0"></TextBlock>
+        </StackPanel>
+        <Button Name="CreateChar" 
+               Content="Add character" 
+               Canvas.Left="295" 
+               Canvas.Top="203" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"
+               Click="CreateChar_Click" Width="84" Height="30"/>
+
+        <StackPanel Name="PartyGrid" Canvas.Left ="400" Canvas.Top="37">
+        </StackPanel>
+        <Button Content="Create party" Canvas.Left="555" Canvas.Top="248" Click="createParty_Click" Height="30" Width="79" HorizontalAlignment="Left" VerticalAlignment="Top" Name="createParty"></Button>
+        <Button Content="Delete char" Canvas.Left="404" Canvas.Top="248" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="78" Name="deleteChar" Click="deleteChar_Click"></Button>
+        <Border Width="230" Height="200" Canvas.Left="404" Canvas.Top="33" BorderBrush="Azure" BorderThickness="4">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border Name="borderChar1" Height="40" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" CornerRadius="5" MouseLeftButtonUp="borderChar1_MouseLeftButtonUp" Visibility="Hidden">
+                    <TextBlock Name="char1Text"></TextBlock>
+                </Border>
+                <Border Name="borderChar2" Height="40" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" CornerRadius="5" MouseLeftButtonUp="borderChar2_MouseLeftButtonUp" Visibility="Hidden">
+                    <TextBlock Name="char2Text"></TextBlock>
+                </Border>
+                <Border Name="borderChar3" Height="40" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" CornerRadius="5" MouseLeftButtonUp="borderChar3_MouseLeftButtonUp" Visibility="Hidden">
+                    <TextBlock Name="char3Text"></TextBlock>
+                </Border>
+                <Border Name="borderChar4" Height="40" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" CornerRadius="5" MouseLeftButtonUp="borderChar4_MouseLeftButtonUp" Visibility="Hidden">
+                    <TextBlock Name="char4Text"></TextBlock>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Canvas>
 </Page>

@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:Into_the_depths"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-        <Button Width="100" Height="50" Click="OpenCharCreate_Click">OK</Button>
-    </Grid>
 </Window>
