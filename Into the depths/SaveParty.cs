@@ -1,20 +1,19 @@
-﻿using Into_the_depths.HeroClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Into_the_depths.Classes;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace Into_the_depths
 {
     static class SaveParty
     {
-        private static string filePath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\partylist.json";
-        public static void SaveToFile(List<Character> party)
+        private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
+
+        public static void SaveToFile(ObservableCollection<Character> party)
         {
-            
+            int numberSaves = Directory.GetFiles(folderPath).Length;
+            string filePath = folderPath + "Savefile" + (numberSaves + 1).ToString() + ".json";
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -27,23 +26,27 @@ namespace Into_the_depths
 
         }
 
-        public static List<Character> LoadFromFile()
+        public static ObservableCollection<List<Character>> LoadFromFile()
         {
-            List<Character> list = new List<Character>();
+            ObservableCollection<List<Character>> list = new ObservableCollection<List<Character>>();
 
-            if (File.Exists(filePath))
+            if (Directory.Exists(folderPath))
             {
                 JsonSerializerSettings settings = new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.All
                 };
-                string savefile = File.ReadAllText(filePath);
-                if (!string.IsNullOrEmpty(savefile))
+                foreach (string filePath in Directory.GetFiles(folderPath, "*.json"))
                 {
-                    list = JsonConvert.DeserializeObject<List<Character>>(savefile, settings);
-                    return list;
+                    string savefile = File.ReadAllText(filePath);
+                    if (!string.IsNullOrEmpty(savefile))
+                    {
+                        List<Character> c = JsonConvert.DeserializeObject<List<Character>>(savefile, settings);
+                        list.Add(c);
+
+                    }
+
                 }
-                else return list;
             }
             return list;
         }

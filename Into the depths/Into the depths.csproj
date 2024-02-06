@@ -9,7 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\background.jpg" />
+    <None Remove="Image\blaknapp.png" />
+    <None Remove="Image\buttongold.png" />
+    <None Remove="Image\buttonsky.png" />
+    <None Remove="Image\character frame.jpg" />
+    <None Remove="Image\Icon\mage ikon.jpg" />
+    <None Remove="Image\Icon\paladin ikon.jpg" />
+    <None Remove="Image\Icon\priest ikon.jpg" />
+    <None Remove="Image\Icon\ranger ikon.jpg" />
+    <None Remove="Image\Icon\rogue ikon.jpg" />
+    <None Remove="Image\Icon\warrior ikon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\background.jpg" />
+    <Resource Include="Image\blaknapp.png" />
+    <Resource Include="Image\buttongold.png" />
+    <Resource Include="Image\buttonsky.png" />
+    <Resource Include="Image\character frame.jpg" />
+    <Resource Include="Image\Icon\mage ikon.jpg" />
+    <Resource Include="Image\Icon\paladin ikon.jpg" />
+    <Resource Include="Image\Icon\priest ikon.jpg" />
+    <Resource Include="Image\Icon\ranger ikon.jpg" />
+    <Resource Include="Image\Icon\rogue ikon.jpg" />
+    <Resource Include="Image\Icon\warrior ikon.jpg" />
   </ItemGroup>
 
 </Project>
