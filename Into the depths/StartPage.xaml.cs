@@ -1,20 +1,33 @@
 ﻿using Into_the_depths.Classes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Into_the_depths
 {
     /// <summary>
     /// Interaction logic for StartPage.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class StartPage : Page, INotifyPropertyChanged
     {
-        public ObservableCollection<List<Character>> characterList { get; set; }
+        public ObservableCollection<ObservableCollection<Character>> characterList { get; set; }
+
+        public ObservableCollection<Character> chosenSave { get; set; }  
         public int testint { get; set; } = 10;
-        public StartPage()
+
+        private readonly MainWindow parentWindow;
+
+        private Border _border = null;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public StartPage(MainWindow w)
         {
             InitializeComponent();
+            parentWindow = w;
             DataContext = this;
             loadSavefiles();
         }
@@ -25,63 +38,32 @@ namespace Into_the_depths
             string classname;
             int y = 0;
             characterList = SaveParty.LoadFromFile();
-            //foreach (var character in characterList)
-            //{
-            //    info = "";
-            //    foreach (var p in character)
-            //    {
-            //        if (p is Paladin)
-            //        {
-            //            var x = (Paladin)p;
-            //            classname = x.ClassName;
-            //        }
-            //        else if (p is Warrior)
-            //        {
-            //            var x = (Warrior)p;
-            //            classname = x.ClassName;
-            //        }
-            //        else if (p is Rogue)
-            //        {
-            //            var x = (Rogue)p;
-            //            classname = x.ClassName;
-            //        }
-            //        else if (p is Ranger)
-            //        {
-            //            var x = (Ranger)p;
-            //            classname = x.ClassName;
-            //        }
-            //        else if (p is Mage)
-            //        {
-            //            var x = (Mage)p;
-            //            classname = x.ClassName;
-            //        }
-            //        else
-            //        {
-            //            var x = (Priest)p;
-            //            classname = x.ClassName;
-            //        }
-            //        info += $"Name: {p.CharacterName} Class: {classname} Str: {p.Strength} Agi: {p.Agility} Int: {p.Intellect} Spi: {p.Spirit} Sta: {p.Stamina}\n";
+        }
 
-            //    }
-            //    switch (y)
-            //    {
-            //        case 0:
-            //            Save1.Text = info;
-            //            break;
-            //        case 1:
-            //            Save2.Text = info;
-            //            break;
-            //        case 2:
-            //            Save3.Text = info;
-            //            break;
-            //        case 3:
-            //            Save4.Text = info;
-            //            break;
+        private void newGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            parentWindow.CharacterCreationPage();
+        }
 
-            //    }
-            //    y++;
-            //}
+        private void loadGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (_border != null) parentWindow.ClosePage(chosenSave);
+            else MessageBox.Show("You need to select a save first.");
+        }
 
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Border b = sender as Border;
+
+            chosenSave = b.DataContext as ObservableCollection<Character>;
+
+            if (_border != null)
+            {
+                _border.BorderBrush = Brushes.Crimson;
+                
+            }
+            b.BorderBrush = Brushes.Blue;
+            _border = b;
         }
     }
 }

@@ -6,5 +6,134 @@
         xmlns:local="clr-namespace:Into_the_depths"
         mc:Ignorable="d"
         Title="MainWindow" Height="536" Width="950">
+    <Grid x:Name="MainGrid" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
 
+        </Grid.RowDefinitions>
+
+        <!--Character Pane-->
+        <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Height="auto">
+                    <Image Source="{Binding ClickedCharacter.IconPath}" Height="50" Stretch="Uniform"></Image>
+                    <TextBlock Margin="0,5,0,0">                                  
+                        <Run Text="{Binding ClickedCharacter.CharacterName, StringFormat=' Name: {0}'}"></Run>
+                        <Run Text="{Binding ClickedCharacter.ClassName, StringFormat=' Class: {0}'}"></Run>
+                        <LineBreak></LineBreak>
+                        <Run Text="{Binding ClickedCharacter.XP, StringFormat=' XP: {0}'}"></Run>
+                        <Run Text="{Binding ClickedCharacter.Level, StringFormat=' Level: {0}'}"></Run>
+                        <LineBreak></LineBreak>
+                        <Run Text="{Binding ClickedCharacter.CurrentHP}"></Run>
+                        <Run Text="{Binding ClickedCharacter.MaxHP, StringFormat='/{0} HP'}"></Run>
+                        <Run Text="{Binding ClickedCharacter.CurrentMP}"></Run>
+                        <Run Text="{Binding ClickedCharacter.MaxMP, StringFormat='/{0} MP'}"></Run>
+                        <LineBreak></LineBreak>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                            <Run Text="{Binding ClickedCharacter.Strength, StringFormat='Str: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.Agility, StringFormat='Agi: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.Intellect, StringFormat='Int: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.Spirit, StringFormat='Spi: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.Stamina, StringFormat='Sta: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.Armor, StringFormat='Armor: {0}'}"></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="{Binding ClickedCharacter.MagicDefense, StringFormat='MDef: {0}'}"></Run>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!--Room-->
+        <TextBlock Grid.Column="1" Grid.Row="0"  Grid.RowSpan="2" FontSize="16" Background="Black" TextWrapping="Wrap" Foreground="White" >            
+            <Run Text="{Binding CurrentRoom.Description}"></Run>
+            <LineBreak></LineBreak>
+            <Run Text="{Binding CurrentRoom.EventList[0].EventText}"></Run>
+        </TextBlock>
+        
+        <!--Party-->
+        <UniformGrid Grid.Column="1" Grid.Row="2" Margin="10">
+                <ItemsControl ItemsSource="{Binding CharacterList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" Rows="2"></UniformGrid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Coral" BorderThickness="3" CornerRadius="4" Height="auto" Margin="10" MouseUp="Border_MouseUp">
+                                <StackPanel Orientation="Horizontal" Height="40" Width="200" Margin="10,0,0,0">
+                                    <Image Source="{Binding IconPath}" Height="40" Stretch="Uniform"></Image>
+                                <TextBlock>                                    
+                                        <Run Text="{Binding CharacterName, StringFormat=' Name: {0}'}"></Run>
+                                        <Run Text="{Binding ClassName, StringFormat=' Class: {0}'}"></Run>
+                                        <LineBreak></LineBreak>
+                                        <Run Text="{Binding CurrentHP}"></Run>
+                                        <Run Text="{Binding MaxHP, StringFormat='/{0} HP'}"></Run>
+                                        <Run Text="{Binding CurrentMP}"></Run>
+                                        <Run Text="{Binding MaxMP, StringFormat='/{0} HP'}"></Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </UniformGrid> 
+
+        <!--Minimap-->
+        <Grid x:Name="MiniMap" ShowGridLines="True" Grid.Column="3" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="45*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
+        
+        <!--Equipment Pane-->
+        <StackPanel Margin="5,5,0,0" Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+            <ItemsControl ItemsSource="{Binding ClickedCharacter}">
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Head: {0}'}"></Run> </TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Neck: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Shoulder: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Chest: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Arm: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Hand: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Legs: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Feet: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Main hand: {0}'}"></Run></TextBlock>
+                <TextBlock Margin="0,0,0,5"> <Run Text="{Binding ClickedCharacter.ClassName, StringFormat='Off-Hand: {0}'}"></Run></TextBlock>
+            </ItemsControl>
+        </StackPanel>
+        
+        <!--Option Pane-->
+        <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Options go here"></TextBlock>
+        
+        <!--Bag pane-->
+        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bag go here!"></TextBlock>
+                   
+        
+        
+        
+    </Grid>
 </Window>

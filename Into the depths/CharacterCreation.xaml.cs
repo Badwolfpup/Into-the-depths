@@ -243,86 +243,6 @@ namespace Into_the_depths
                     p.SetValue(this, tempStat, null);
                     UnassignedPoints++;
                 }
-
-
-                //switch (stat.ToLower())
-                //{
-                //    case "strength":
-                //        if (IncOrDec)
-                //        {
-                //            if (Strength < 20 && UnassignedPoints != 0)
-                //            {
-                //                Strength++;
-                //                UnassignedPoints--;
-                //            }
-                //        }
-                //        else if (Strength > 0)
-                //        {
-                //            Strength--;
-                //            UnassignedPoints++;
-                //        }
-                //        break;
-                //    case "agility":
-                //        if (IncOrDec)
-                //        {
-                //            if (Agility < 20 && UnassignedPoints != 0)
-                //            {
-                //                Agility++;
-                //                UnassignedPoints--;
-                //            }
-                //        }
-                //        else if (Agility > 0)
-                //        {
-                //            Agility--;
-                //            UnassignedPoints++;
-                //        }
-                //        break;
-                //    case "intellect":
-                //        if (IncOrDec)
-                //        {
-                //            if (Intellect < 20 && UnassignedPoints != 0)
-                //            {
-                //                Intellect++;
-                //                UnassignedPoints--;
-                //            }
-                //        }
-                //        else if (Intellect > 0)
-                //        {
-                //            Intellect--;
-                //            UnassignedPoints++;
-                //        }
-                //        break;
-                //    case "spirit":
-                //        if (IncOrDec)
-                //        {
-                //            if (Spirit < 20 && UnassignedPoints != 0)
-                //            {
-                //                Spirit++;
-                //                UnassignedPoints--;
-                //            }
-                //        }
-                //        else if (Spirit > 0)
-                //        {
-                //            Spirit--;
-                //            UnassignedPoints++;
-                //        }
-                //        break;
-                //    case "stamina":
-                //        if (IncOrDec)
-                //        {
-                //            if (Stamina < 20 && UnassignedPoints != 0)
-                //            {
-                //                Stamina++;
-                //                UnassignedPoints--;
-                //            }
-                //        }
-                //        else if (Stamina > 0)
-                //        {
-                //            Stamina--;
-                //            UnassignedPoints++;
-                //        }
-                //        break;
-                //}
             }
         }
         //private void addCharToPartyGrid()
@@ -430,90 +350,6 @@ namespace Into_the_depths
         
         private void CreateChar_Click(object sender, RoutedEventArgs e)
         {
-            //if (RBPaladin.IsChecked == true)
-            //{
-            //    if (CharName.Text != "" || CharName.Text.Length < 13)
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            Paladin p = new Paladin(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
-            //else if (RBWarrior.IsChecked == true)
-            //{
-            //    if (CharName.Text != "")
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            Warrior p = new Warrior(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
-            //else if (RBRogue.IsChecked == true)
-            //{
-            //    if (CharName.Text != "")
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            var p = new Rogue(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
-            //else if (RBRanger.IsChecked == true)
-            //{
-            //    if (CharName.Text != "")
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            var p = new Ranger(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
-            //else if (RBMage.IsChecked == true)
-            //{
-            //    if (CharName.Text != "")
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            var p = new Mage(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
-            //else if (RBPriest.IsChecked == true)
-            //{
-            //    if (CharName.Text != "")
-            //    {
-            //        if (characterList.Count < 4)
-            //        {
-            //            var p = new Priest(CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
-            //            characterList.Add(p);
-            //            //addCharToPartyGrid();
-            //        }
-            //        else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
-            //    }
-            //    else MessageBox.Show("You need to give the character a name first");
-            //}
             if (CharName.Text != "")
             {
                 if (characterList.Count < 4)
@@ -525,7 +361,7 @@ namespace Into_the_depths
                         characterList.Add(p);
                     }
 
-                    //addCharToPartyGrid();
+                    
                 }
                 else MessageBox.Show("You have reached the maximum number of characters. You need to delete a character from your party before adding new ones");
             }
@@ -546,27 +382,6 @@ namespace Into_the_depths
                 characterList.Remove(c);
             }
             else MessageBox.Show("You need to select a character before you can delete it");
-            //if (borderChar1.BorderBrush == Brushes.Blue)
-            //{
-            //    characterList.RemoveAt(0);
-            //    addCharToPartyGrid();
-            //}
-            //else if (borderChar2.BorderBrush == Brushes.Blue)
-            //{
-            //    characterList.RemoveAt(1);
-            //    addCharToPartyGrid();
-            //}
-            //else if (borderChar3.BorderBrush == Brushes.Blue)
-            //{
-            //    characterList.RemoveAt(2);
-            //    addCharToPartyGrid();
-            //}
-            //else if (borderChar4.BorderBrush == Brushes.Blue)
-            //{
-            //    characterList.RemoveAt(3);
-            //    addCharToPartyGrid();
-            //}
-            //else MessageBox.Show("You need to select a character before you can delete it");
         }
 
         private void createParty_Click(object sender, RoutedEventArgs e)
@@ -574,7 +389,7 @@ namespace Into_the_depths
             if (characterList.Count > 3)
             {
                 SaveParty.SaveToFile(characterList);
-                //parentWindow.closeCharCreatePage();
+                parentWindow.ClosePage(characterList);
                 //characterList.Clear();
                 //characterList = SaveParty.LoadFromFile();
                 //addCharToPartyGrid();
@@ -583,41 +398,7 @@ namespace Into_the_depths
         }
 
         #region ClickOnBorder
-        private void borderChar1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //borderChar1.BorderBrush = Brushes.Blue;
-            //borderChar2.BorderBrush = Brushes.Coral;
-            //borderChar3.BorderBrush = Brushes.Coral;
-            //borderChar4.BorderBrush = Brushes.Coral;
-            selectedChar = 0;
-        }
 
-        private void borderChar2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //borderChar2.BorderBrush = Brushes.Blue;
-            //borderChar1.BorderBrush = Brushes.Coral;
-            //borderChar3.BorderBrush = Brushes.Coral;
-            //borderChar4.BorderBrush = Brushes.Coral;
-            selectedChar = 1;
-        }
-
-        private void borderChar3_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //borderChar3.BorderBrush = Brushes.Blue;
-            //borderChar1.BorderBrush = Brushes.Coral;
-            //borderChar2.BorderBrush = Brushes.Coral;
-            //borderChar4.BorderBrush = Brushes.Coral;
-            selectedChar = 2;
-        }
-
-        private void borderChar4_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //borderChar4.BorderBrush = Brushes.Blue;
-            //borderChar1.BorderBrush = Brushes.Coral;
-            //borderChar2.BorderBrush = Brushes.Coral;
-            //borderChar3.BorderBrush = Brushes.Coral;
-            selectedChar = 3;
-        }
 
 
 

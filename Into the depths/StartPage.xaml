@@ -18,7 +18,8 @@
         <Button Name="newGameButton" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top"
-               Width="117" Height="42" Margin="74,96,0,0">
+               Width="117" Height="42" Margin="74,96,0,0"
+                Click="newGameButton_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
@@ -35,7 +36,8 @@
         <Button Name="loadGameButton" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top"
-               Width="117" Height="42" Margin="74,163,0,0">
+               Width="117" Height="42" Margin="74,163,0,0"
+                Click="loadGameButton_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
@@ -53,7 +55,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Border BorderBrush="Crimson" BorderThickness="3" CornerRadius="3" Margin="0,0,0,8">
+                            <Border BorderBrush="Crimson" BorderThickness="3" CornerRadius="3" Margin="0,0,0,8" MouseDown="Border_MouseDown">
                                 <ItemsControl ItemsSource="{Binding}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>

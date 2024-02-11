@@ -1,4 +1,6 @@
-﻿namespace Into_the_depths.Classes
+﻿using Into_the_depths.Classes;
+
+namespace Into_the_depths.Classes
 {
     class Mage : Character
     {

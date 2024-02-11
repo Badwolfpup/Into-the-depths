@@ -1,8 +1,13 @@
-﻿using Into_the_depths.Classes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace Into_the_depths.Classes
+namespace Into_the_depths.Monster
 {
-    public class Character
+    public class BaseMonster
     {
         public string CharacterName { get; set; }
         public int Strength { get; set; }
@@ -24,7 +29,7 @@ namespace Into_the_depths.Classes
         public int Armor { get; set; }
         public int MagicDefense { get; set; }
 
-        public Character(string charactername, int str, int agi, int inte, int spi, int sta, int hp, int mp, int xp, int armor, int magicdefense)
+        public BaseMonster(string charactername, int str, int agi, int inte, int spi, int sta, int hp, int mp, int xp, int armor, int magicdefense, int level)
         {
             CharacterName = charactername;
             Strength = str;
@@ -39,7 +44,12 @@ namespace Into_the_depths.Classes
             XP = xp;
             Armor = armor;
             MagicDefense = magicdefense;
-            Level = 1;
+            Level = level;
+        }
+
+        public void AdjustForLevel()
+        {
+            //Some logic to adjust the values dependings on level
         }
     }
 }

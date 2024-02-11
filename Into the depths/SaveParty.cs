@@ -9,6 +9,7 @@ namespace Into_the_depths
     static class SaveParty
     {
         private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
+        //private static string folderPath = @"Savefiles";
 
         public static void SaveToFile(ObservableCollection<Character> party)
         {
@@ -26,9 +27,9 @@ namespace Into_the_depths
 
         }
 
-        public static ObservableCollection<List<Character>> LoadFromFile()
+        public static ObservableCollection<ObservableCollection<Character>> LoadFromFile()
         {
-            ObservableCollection<List<Character>> list = new ObservableCollection<List<Character>>();
+            ObservableCollection<ObservableCollection<Character>> list = new ObservableCollection<ObservableCollection<Character>>();
 
             if (Directory.Exists(folderPath))
             {
@@ -41,7 +42,7 @@ namespace Into_the_depths
                     string savefile = File.ReadAllText(filePath);
                     if (!string.IsNullOrEmpty(savefile))
                     {
-                        List<Character> c = JsonConvert.DeserializeObject<List<Character>>(savefile, settings);
+                        ObservableCollection<Character> c = JsonConvert.DeserializeObject<ObservableCollection<Character>>(savefile, settings);
                         list.Add(c);
 
                     }
