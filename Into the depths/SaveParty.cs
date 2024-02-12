@@ -1,15 +1,19 @@
 ﻿using Into_the_depths.Classes;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
 
 namespace Into_the_depths
 {
     static class SaveParty
     {
-        private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
-        //private static string folderPath = @"Savefiles";
+        private static string folderName = @"..\..\..\Savefiles";
+        private static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
+        private static string folderPath = Path.GetFullPath(Path.Combine(currentDirectory + folderName));
 
         public static void SaveToFile(ObservableCollection<Character> party)
         {
