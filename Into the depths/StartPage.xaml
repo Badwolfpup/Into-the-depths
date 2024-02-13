@@ -50,6 +50,25 @@
                 <TextBlock Text="Load game" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
             </Button.Content>
         </Button>
+
+        <Button Name="deleteSaveButton" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top"
+               Width="117" Height="42" Margin="0,96,34,0"
+                Click="deleteSaveButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Image Source="pack://application:,,,/Into the depths;component/Image/buttongold.png" Stretch="Fill"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Content>
+                <TextBlock Text="Delete save" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
+            </Button.Content>
+        </Button>
+        
         <ScrollViewer Height="200" Width="505" Margin="207,96,0,0" Background="#FFECDFDF" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ItemsControl ItemsSource="{Binding characterList}">
                 <ItemsControl.ItemTemplate>

@@ -90,16 +90,11 @@ namespace Into_the_depths
             Content = null;
             CharacterCreation c = new CharacterCreation(this);
             Content = c;
-            //frame = new Frame();
-            //frame.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //frame.VerticalAlignment = VerticalAlignment.Stretch;
-            //AddChild(frame);
-            //frame.Navigate(new CharacterCreation(this));
-            //frame.Navigate(new StartPage());
         }
 
         public void ClosePage(ObservableCollection<Character> c)
         {
+            
             CharacterList = c;
             ClickedCharacter = CharacterList.First();
             Content = MainGrid;
@@ -118,6 +113,32 @@ namespace Into_the_depths
         {
             Border border = sender as Border;
             ClickedCharacter = border.DataContext as Character;
+        }
+
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Up)
+            {
+                RoomsList.Add(new Rooms.Room());
+                CurrentRoom = RoomsList.Last();
+            } 
+            else if (e.Key == System.Windows.Input.Key.D1 || e.Key == System.Windows.Input.Key.NumPad1)
+            {
+
+            }
+            else if (e.Key == System.Windows.Input.Key.D2 || e.Key == System.Windows.Input.Key.NumPad2)
+            {
+
+            }
+            else if (e.Key == System.Windows.Input.Key.D3 || e.Key == System.Windows.Input.Key.NumPad3)
+            {
+
+            }
+            else if (e.Key == System.Windows.Input.Key.D4 || e.Key == System.Windows.Input.Key.NumPad4)
+            {
+
+            }
         }
     }
 }

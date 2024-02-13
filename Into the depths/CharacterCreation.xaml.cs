@@ -106,6 +106,8 @@ namespace Into_the_depths
 
         private string _classIsChecked = "Paladin";
 
+        private string _saveID;
+
         private readonly MainWindow parentWindow;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -120,6 +122,7 @@ namespace Into_the_depths
             InitializeComponent();
             DataContext = this;
             parentWindow = w;
+            _saveID = GenerateSaveID();
             characterList = new ObservableCollection<Character>();
             ChangeStat = new RelayCommand(IncrementOrDecrement);
         }
@@ -239,115 +242,24 @@ namespace Into_the_depths
                 } 
                 else
                 {
-                    Strength--;
+                    tempStat--;
                     p.SetValue(this, tempStat, null);
                     UnassignedPoints++;
                 }
             }
         }
-        //private void addCharToPartyGrid()
-        //{
-        //    borderChar1.BorderBrush = Brushes.Coral;
-        //    borderChar2.BorderBrush = Brushes.Coral;
-        //    borderChar3.BorderBrush = Brushes.Coral;
-        //    borderChar4.BorderBrush = Brushes.Coral;
-        //    borderChar1.Visibility = Visibility.Hidden;
-        //    borderChar2.Visibility = Visibility.Hidden;
-        //    borderChar3.Visibility = Visibility.Hidden;
-        //    borderChar4.Visibility = Visibility.Hidden;
-        //    string classname;
-        //    PartyGrid.Children.Clear();
-        //    string iconSource;
-        //    int y = 1;
-        //    foreach (var p in characterList)
-        //    {
-        //        if (p is Paladin)
-        //        {
-        //            var x = (Paladin)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/paladin%20ikon.jpg";
-        //        }
-        //        else if (p is Warrior)
-        //        {
-        //            var x = (Warrior)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/warrior%20ikon.jpg";
-        //        }
-        //        else if (p is Rogue)
-        //        {
-        //            var x = (Rogue)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/rogue%20ikon.jpg";
-        //        }
-        //        else if (p is Ranger)
-        //        {
-        //            var x = (Ranger)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/ranger%20ikon.jpg";
-        //        }
-        //        else if (p is Mage)
-        //        {
-        //            var x = (Mage)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/mage%20ikon.jpg";
-        //        }
-        //        else
-        //        {
-        //            var x = (Priest)p;
-        //            classname = x.ClassName;
-        //            iconSource = "pack://application:,,,/Into the depths;component/Image/Icon/priest%20ikon.jpg";
-        //        }
 
+        private string GenerateSaveID()
+        {
+            string x = "";
+            Random r = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                x += r.Next(10).ToString();
+            }
+            return x;
+        }
 
-        //        switch (y)
-        //        {
-        //            case 1:
-        //                {
-        //                    char1Text.Text = $"Name: {p.CharacterName}  Class: {classname} \n " +
-        //                        $"Str: {p.Strength.ToString()} Agi: {p.Agility} Int: {p.Intellect} Spi: {p.Spirit} Sta: {p.Stamina}";
-        //                    borderChar1.Visibility = Visibility.Visible;
-        //                    ikon1.Source = new BitmapImage(new Uri(iconSource));
-        //                    break;
-        //                }
-        //            case 2:
-        //                {
-        //                    char2Text.Text = $"Name: {p.CharacterName}  Class: {classname} \n " +
-        //                        $"Str: {p.Strength.ToString()} Agi: {p.Agility} Int: {p.Intellect} Spi: {p.Spirit} Sta: {p.Stamina}";
-        //                    borderChar2.Visibility = Visibility.Visible;
-        //                    ikon2.Source = new BitmapImage(new Uri(iconSource));
-        //                    break;
-        //                }
-        //            case 3:
-        //                {
-        //                    char3Text.Text = $"Name: {p.CharacterName}  Class: {classname} \n " +
-        //                        $"Str: {p.Strength.ToString()} Agi: {p.Agility} Int: {p.Intellect} Spi: {p.Spirit} Sta: {p.Stamina}";
-        //                    borderChar3.Visibility = Visibility.Visible;
-        //                    ikon3.Source = new BitmapImage(new Uri(iconSource));
-        //                    break;
-        //                }
-        //            case 4:
-        //                {
-        //                    char4Text.Text = $"Name: {p.CharacterName}  Class: {classname} \n " +
-        //                        $"Str: {p.Strength.ToString()} Agi: {p.Agility} Int: {p.Intellect} Spi: {p.Spirit} Sta: {p.Stamina}";
-        //                    borderChar4.Visibility = Visibility.Visible;
-        //                    ikon4.Source = new BitmapImage(new Uri(iconSource));
-        //                    break;
-        //                }
-        //            default: break;
-        //        }
-        //        y++;
-
-        //    }
-        //    CharName.Clear();
-        //    Strength = 12;
-        //    Agility = 12;
-        //    Intellect = 12;
-        //    Spirit = 12;
-        //    Stamina = 12;
-        //    UnassignedPoints = 12;
-        //}
-
-        
         private void CreateChar_Click(object sender, RoutedEventArgs e)
         {
             if (CharName.Text != "")
@@ -357,8 +269,10 @@ namespace Into_the_depths
                     Type type = Type.GetType("Into_the_depths.Classes." + _classIsChecked); 
                     if (type != null)
                     {
-                        var p = (Character)Activator.CreateInstance(type, CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100);
+                        var p = (Character)Activator.CreateInstance(type, CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100, _saveID);
                         characterList.Add(p);
+                        CharName.Text = "";
+                        Strength = 12; Agility = 12; Intellect = 12; Spirit = 12; Stamina = 12; UnassignedPoints = 12;
                     }
 
                     

@@ -12,7 +12,7 @@ namespace Into_the_depths.Rooms
 {
     public class Room : INotifyPropertyChanged
     {
-        private string _desription;
+        private string _description;
 
         private ObservableCollection<BaseEvent> _eventList;
 
@@ -20,10 +20,10 @@ namespace Into_the_depths.Rooms
 
         public string Description
         {
-            get { return _desription; } 
+            get { return _description; } 
             set 
             { 
-                _desription = value;
+                _description = value;
                OnPropertyChanged(nameof(Description));
             }
         }

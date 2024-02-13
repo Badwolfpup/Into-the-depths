@@ -18,17 +18,17 @@ namespace Into_the_depths.Rooms.EventTypes
 {
     public class Enemy : BaseEvent, INotifyPropertyChanged
     {
-        private string _attackText;
+        private string _EventText;
         public BaseMonster selectedMonster { get; set; }
 
         public string EventText
         {
-            get { return _attackText; }
+            get { return _EventText; }
             set
             {
-                if (_attackText != value)
+                if (_EventText != value)
                 {
-                    _attackText = value;
+                    _EventText = value;
                     OnPropertyChanged(nameof(EventText));
                 }
             }
@@ -46,7 +46,9 @@ namespace Into_the_depths.Rooms.EventTypes
         private void SelectMonster()
         {
             string[]? classFiles;
-            string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\MonsterClasses\Monster";
+            string folderName = @"..\..\..\MonsterClasses\Monster\";
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string folderPath = Path.GetFullPath(Path.Combine(currentDirectory + folderName));
             if (Directory.Exists(folderPath))
             {
                 classFiles = Directory.GetFiles(folderPath, "*.cs");

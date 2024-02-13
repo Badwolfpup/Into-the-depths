@@ -60,10 +60,20 @@ namespace Into_the_depths
             if (_border != null)
             {
                 _border.BorderBrush = Brushes.Crimson;
-                
+
             }
             b.BorderBrush = Brushes.Blue;
             _border = b;
+        }
+
+        private void deleteSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (chosenSave != null)
+            {
+                SaveParty.DeleteSaveFile(chosenSave[0].saveID);
+                characterList.Remove(chosenSave);
+            }
+            else MessageBox.Show("You need to select a save first");
         }
     }
 }

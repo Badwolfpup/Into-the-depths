@@ -10,10 +10,12 @@ namespace Into_the_depths
 {
     static class SaveParty
     {
-        private static string folderName = @"..\..\..\Savefiles";
+        private static string folderName = @"..\..\..\Savefiles\";
         private static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        //private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
         private static string folderPath = Path.GetFullPath(Path.Combine(currentDirectory + folderName));
+        //private static string folderPath = @"C:\Users\adam_\source\repos\Badwolfpup\Into-the-depths\Into the depths\Savefiles\";
+
+        private static ObservableCollection<ObservableCollection<Character>> list = new ObservableCollection<ObservableCollection<Character>>();
 
         public static void SaveToFile(ObservableCollection<Character> party)
         {
@@ -33,7 +35,7 @@ namespace Into_the_depths
 
         public static ObservableCollection<ObservableCollection<Character>> LoadFromFile()
         {
-            ObservableCollection<ObservableCollection<Character>> list = new ObservableCollection<ObservableCollection<Character>>();
+            
 
             if (Directory.Exists(folderPath))
             {
@@ -54,6 +56,32 @@ namespace Into_the_depths
                 }
             }
             return list;
+        }
+
+        public static void DeleteSaveFile(string saveid)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                };
+                foreach (string filePath in Directory.GetFiles(folderPath, "*.json"))
+                {
+                    string savefile = File.ReadAllText(filePath);
+                    if (!string.IsNullOrEmpty(savefile))
+                    {
+                        ObservableCollection<Character> c = JsonConvert.DeserializeObject<ObservableCollection<Character>>(savefile, settings);
+                        if (c[0].saveID == saveid) 
+                        { 
+                            File.Delete(filePath);
+                            return;
+                        }
+
+                    }
+                    
+                }
+            }
         }
     }
 }
