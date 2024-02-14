@@ -19,6 +19,7 @@ namespace Into_the_depths
 
         public static void SaveToFile(ObservableCollection<Character> party)
         {
+            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath); 
             int numberSaves = Directory.GetFiles(folderPath).Length;
             string filePath = folderPath + "Savefile" + (numberSaves + 1).ToString() + ".json";
 

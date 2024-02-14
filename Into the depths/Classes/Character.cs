@@ -25,7 +25,7 @@ namespace Into_the_depths.Classes
         private int _level;
         private int _armor;
         private int _magicdefense;
-        private ObservableCollection<BaseEquipment> _baseequipment;
+        private ObservableCollection<BaseItem> _baseequipment;
         #endregion
 
         #region public properties
@@ -202,7 +202,7 @@ namespace Into_the_depths.Classes
             }
         }
      
-        public ObservableCollection<BaseEquipment> Equipment
+        public ObservableCollection<BaseItem> Equipment
         {
             get { return _baseequipment; } 
             set
@@ -249,7 +249,7 @@ namespace Into_the_depths.Classes
 
         private void StartingEquipment()
         {
-            Equipment = new ObservableCollection<BaseEquipment>
+            Equipment = new ObservableCollection<BaseItem>
             {
                 new Head("Basic head", 2, 2, 2, 2, 2, 10, 10),
                 new Neck("Basic neck", 2, 2, 2, 2, 2, 10, 10),
@@ -270,7 +270,9 @@ namespace Into_the_depths.Classes
             PropertyInfo p;
             foreach (var item in Equipment)
             {
-                p = item.GetType().GetProperty("Strength");
+                Type type = item.GetType();
+                p = type.GetProperty("Strength");
+                //p = item.GetType().GetProperty("Strength");
                 Strength += (int)p.GetValue(item);
 
                 p = item.GetType().GetProperty("Agility");
@@ -302,6 +304,9 @@ namespace Into_the_depths.Classes
                     PropertyInfo[] pNewItem = newItem.GetType().GetProperties();
                     PropertyInfo[] pOldItem = oldItem.GetType().GetProperties();
                     PropertyInfo[] pClass = typeof(Character).GetProperties();
+                    int x = Equipment.IndexOf(oldItem);
+                    Equipment.Remove(oldItem);
+                    Equipment.Insert(x, newItem);
                     foreach (var newProperty in pNewItem)
                     {
                         foreach(var oldProperty in pOldItem)
