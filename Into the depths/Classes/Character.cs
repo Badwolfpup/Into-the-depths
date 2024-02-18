@@ -29,6 +29,70 @@ namespace Into_the_depths.Classes
         #endregion
 
         #region public properties
+
+        //Stats från Items
+        #region Basestats
+        public int BaseStrength
+        {
+            get { return _basestrength; }
+            set
+            {
+                if (_basestrength != value)
+                {
+                    _basestrength = value;
+                    OnPropertyChanged(nameof(BaseStrength));
+                }
+            }
+        }
+        public int BaseAgility
+        {
+            get { return _baseagility; }
+            set
+            {
+                if (_baseagility != value)
+                {
+                    _baseagility = value;
+                    OnPropertyChanged(nameof(BaseAgility));
+                }
+            }
+        }
+        public int BaseIntellect
+        {
+            get { return _baseintellect; }
+            set
+            {
+                if (_baseintellect != value)
+                {
+                    _baseintellect = value;
+                    OnPropertyChanged(nameof(BaseIntellect));
+                }
+            }
+        }
+        public int BaseSpirit
+        {
+            get { return _basespirit; }
+            set
+            {
+                if (_basespirit != value)
+                {
+                    _basespirit = value;
+                    OnPropertyChanged(nameof(BaseSpirit));
+                }
+            }
+        }
+        public int BaseStamina
+        {
+            get { return _basestamina; }
+            set
+            {
+                if (_basestamina != value)
+                {
+                    _basestamina = value;
+                    OnPropertyChanged(nameof(BaseStamina));
+                }
+            }
+        }
+        #endregion
         public string CharacterName
         {
             get { return _charactername; }
