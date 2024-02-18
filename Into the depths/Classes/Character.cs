@@ -25,7 +25,13 @@ namespace Into_the_depths.Classes
         private int _level;
         private int _armor;
         private int _magicdefense;
-        private ObservableCollection<BaseItem> _baseequipment;
+        private ObservableCollection<BaseEquipment> _baseequipment;
+
+        private int _basestrength;
+        private int _baseagility;
+        private int _baseintellect;
+        private int _basespirit;
+        private int _basestamina;
         #endregion
 
         #region public properties
@@ -266,7 +272,7 @@ namespace Into_the_depths.Classes
             }
         }
      
-        public ObservableCollection<BaseItem> Equipment
+        public ObservableCollection<BaseEquipment> Equipment
         {
             get { return _baseequipment; } 
             set
@@ -285,6 +291,11 @@ namespace Into_the_depths.Classes
         public Character(string charactername, int str, int agi, int inte, int spi, int sta, int hp, int mp, int xp, int armor, int magicdefense, string saveid)
         {
             CharacterName = charactername;
+            BaseStrength = str;
+            BaseAgility = agi;
+            BaseIntellect = inte;
+            BaseSpirit = spi;
+            BaseStamina = sta;
             Strength = str;
             Agility = agi;
             Intellect = inte;
@@ -313,7 +324,7 @@ namespace Into_the_depths.Classes
 
         private void StartingEquipment()
         {
-            Equipment = new ObservableCollection<BaseItem>
+            Equipment = new ObservableCollection<BaseEquipment>
             {
                 new Head("Basic head", 2, 2, 2, 2, 2, 10, 10),
                 new Neck("Basic neck", 2, 2, 2, 2, 2, 10, 10),
@@ -334,32 +345,24 @@ namespace Into_the_depths.Classes
             PropertyInfo p;
             foreach (var item in Equipment)
             {
-                Type type = item.GetType();
-                p = type.GetProperty("Strength");
-                //p = item.GetType().GetProperty("Strength");
-                Strength += (int)p.GetValue(item);
+                PropertyInfo[] pItem = item.GetType().GetProperties();
+                PropertyInfo[] pClass = typeof(Character).GetProperties();
 
-                p = item.GetType().GetProperty("Agility");
-                Agility += (int)p.GetValue(item);
-
-                p = item.GetType().GetProperty("Intellect");
-                Intellect += (int)p.GetValue(item);
-
-                p = item.GetType().GetProperty("Spirit");
-                Spirit += (int)p.GetValue(item);
-
-                p = item.GetType().GetProperty("Stamina");
-                Stamina += (int)p.GetValue(item);
-
-                p = item.GetType().GetProperty("Armor");
-                Armor += (int)p.GetValue(item);
-
-                p = item.GetType().GetProperty("MagicDefense");
-                MagicDefense += (int)p.GetValue(item);
+                foreach (var propItem in pItem)
+                {
+                    foreach (var propClass in pClass) 
+                    {
+                        if (propItem.Name == propClass.Name)
+                        {
+                            int newValue = (int)propClass.GetValue(this) + (int)propItem.GetValue(item);
+                            propClass.SetValue(this, newValue);
+                        }                    
+                    }
+                }
             }            
         }
 
-        private void ChangeEquipment(BaseItem newItem)
+        private void ChangeEquipment(BaseEquipment newItem)
         {
             foreach (var oldItem in Equipment)
             {

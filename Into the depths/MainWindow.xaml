@@ -87,10 +87,10 @@
                 </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Coral" BorderThickness="3" CornerRadius="4" Height="auto" Margin="10" MouseUp="Border_MouseUp">
-                                <StackPanel Orientation="Horizontal" Height="40" Width="200" Margin="10,0,0,0">
+                            <Border BorderBrush="Coral" BorderThickness="3" CornerRadius="4" Height="auto" Margin="10" MouseUp="Border_MouseUp" Background="Transparent">
+                                <StackPanel Orientation="Horizontal" Height="40" Width="200" Margin="10,0,0,0" >
                                     <Image Source="{Binding IconPath}" Height="40" Stretch="Uniform"></Image>
-                                <TextBlock>                                    
+                                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch">                                    
                                         <Run Text="{Binding CharacterName, StringFormat=' Name: {0}'}"></Run>
                                         <Run Text="{Binding ClassName, StringFormat=' Class: {0}'}"></Run>
                                         <LineBreak></LineBreak>

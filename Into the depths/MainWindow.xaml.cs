@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Into_the_depths
 {
@@ -19,6 +20,8 @@ namespace Into_the_depths
         private Rooms.Room _currentRoom;
 
         private Character _clickedcharacter;
+
+        private Border? _clickedBorder = null;
 
         private ObservableCollection<Character> _characterlist;
 
@@ -113,6 +116,13 @@ namespace Into_the_depths
         {
             Border border = sender as Border;
             ClickedCharacter = border.DataContext as Character;
+
+            if (_clickedBorder != null)
+            {
+                _clickedBorder.BorderBrush = Brushes.Coral;
+            }
+            border.BorderBrush = Brushes.Blue;
+            _clickedBorder = border;
         }
 
 
