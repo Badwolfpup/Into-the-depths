@@ -49,7 +49,7 @@ namespace Into_the_depths.Items
                     Type type = Type.GetType("Into_the_depths.Items.Equipment." + className);
                     if (type != null)
                     {
-                        selectedEquipment = (BaseEquipment)Activator.CreateInstance(type, EquipmentName(className), 12, 12, 12, 12, 12, 100, 100);
+                        selectedEquipment = (BaseEquipment)Activator.CreateInstance(type, EquipmentName(className), r.Next(8, 19), r.Next(8, 19), r.Next(8, 19), r.Next(8, 19), r.Next(8, 19), r.Next(70, 130), r.Next(70, 130));
                     }
                 }
             }

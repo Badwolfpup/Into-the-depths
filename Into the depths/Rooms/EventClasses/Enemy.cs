@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Into_the_depths.Monster;
+using Into_the_depths.Items;
 
 namespace Into_the_depths.Rooms.EventTypes
 {
@@ -20,6 +21,10 @@ namespace Into_the_depths.Rooms.EventTypes
     {
         private string _EventText;
         public BaseMonster selectedMonster { get; set; }
+
+        public BaseEquipment LootedEquipment { get; set; }
+
+        public bool HasLoot { get; set; }
 
         public string EventText
         {
@@ -66,7 +71,17 @@ namespace Into_the_depths.Rooms.EventTypes
                     }
                 }
             }
+        }
 
+        private void Loot()
+        {
+            Random r = new Random();
+            int lootchance;
+            if (r.Next(100) > 50) 
+            {
+                LootedEquipment = BaseEquipment.GenerateEquipment();
+                HasLoot = true;
+            }
         }
     }
 }

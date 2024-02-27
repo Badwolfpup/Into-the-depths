@@ -107,20 +107,35 @@
             </UniformGrid> 
 
         <!--Minimap-->
-        <Grid x:Name="MiniMap" ShowGridLines="True" Grid.Column="3" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="45*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
-                <ColumnDefinition Width="45*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
-            </Grid.RowDefinitions>
-        </Grid>
+
+            <UniformGrid x:Name="MiniMap" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ItemsControl ItemsSource="{Binding Minimap.List}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate >
+                            <UniformGrid Columns="8" ></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate >
+                                        <UniformGrid Rows="8" ></UniformGrid>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                        <Rectangle Fill="{Binding Fill}"  Height="20" Width="20" Stroke="White" StrokeThickness="1" ></Rectangle>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </UniformGrid>
+
         
         <!--Equipment Pane-->
         <StackPanel x:Name="EquipmentPane" Margin="5,5,0,0" Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Background="Linen">
