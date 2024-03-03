@@ -28,7 +28,7 @@ namespace Into_the_depths
             List = new ObservableCollection<ObservableCollection<FillColor>>();
             Map = new ObservableCollection<ObservableCollection<bool>>();
             RoomsList = new ObservableCollection<ObservableCollection<Rooms.Room>>();
-            while (!makeLab()) ;
+            while (!CreateLabyrinth()) ;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -37,7 +37,7 @@ namespace Into_the_depths
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public bool makeLab()
+        public bool CreateLabyrinth()
         {
             _haveChecked = new bool[numberX, numberY];
             _counter = 0;
