@@ -20,18 +20,18 @@ A WPF dungeon crawler RPG with character creation, multiple classes, an equipmen
 
 ```
 Into the depths/
-├── Classes/              # Character classes (Character, Warrior, Mage, Paladin, Priest, Ranger, Rogue)
-├── Items/
-│   └── Equipment/        # 10 equipment slot types
-├── MonsterClasses/       # Monster base class and types
-├── Rooms/                # Room and event system
-├── CharacterCreation.xaml  # Character creation screen
-├── StartPage.xaml        # Start menu
-├── MainWindow.xaml       # Main game UI
-├── Combat.cs             # Combat logic
-├── Labyrinth.cs          # Dungeon generation
-├── SaveParty.cs          # JSON save system
-└── Image/                # UI graphics and class icons
++-- Classes/              # Character classes (Character, Warrior, Mage, Paladin, Priest, Ranger, Rogue)
++-- Items/
+|   +-- Equipment/        # 10 equipment slot types
++-- MonsterClasses/       # Monster base class and types
++-- Rooms/                # Room and event system
++-- CharacterCreation.xaml  # Character creation screen
++-- StartPage.xaml        # Start menu
++-- MainWindow.xaml       # Main game UI
++-- Combat.cs             # Combat logic
++-- Labyrinth.cs          # Dungeon generation
++-- SaveParty.cs          # JSON save system
++-- Image/                # UI graphics and class icons
 ```
 
 ## How to Run
