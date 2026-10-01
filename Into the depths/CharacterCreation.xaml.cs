@@ -10,95 +10,36 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Into_the_depths
 {
     /// <summary>
     /// Interaction logic for CharacterCreation.xaml
     /// </summary>
-    public partial class CharacterCreation : Page, INotifyPropertyChanged
+    [ObservableObject]
+    public partial class CharacterCreation : Page
     {
-        public ObservableCollection<Character> characterList  { get; set; }
-        private int unassignedPoints = 12;
-        private int strength = 12;
-        private int agility = 12;
-        private int intellect = 12;
-        private int spirit = 12;
+        [ObservableProperty]
+        private ObservableCollection<Character> _characterList;
+        [ObservableProperty]
+        private int _unassignedPoints = 12;
+        [ObservableProperty]
+        private int _strength = 12;
+        [ObservableProperty]
+        private int _agility = 12;
+        [ObservableProperty]
+        private int _intellect = 12;
+        [ObservableProperty]
+        private int _spirit = 12;
+        [ObservableProperty]
         private int stamina = 12;
-        public int Strength
-        {
-            get { return strength; }
-            set
-            {
-                if (strength != value)
-                {
-                    strength = value;
-                    OnPropertyChanged(nameof(Strength));
-                }
-            }
-        }
-        public int Agility
-        {
-            get { return agility; }
-            set
-            {
-                if (agility != value)
-                {
-                    agility = value;
-                    OnPropertyChanged(nameof(Agility));
-                }
-            }
-        }
-        public int Intellect
-        {
-            get { return intellect; }
-            set
-            {
-                if (intellect != value)
-                {
-                    intellect = value;
-                    OnPropertyChanged(nameof(Intellect));
-                }
-            }
-        }
-        public int Spirit
-        {
-            get { return spirit; }
-            set
-            {
-                if (spirit != value)
-                {
-                    spirit = value;
-                    OnPropertyChanged(nameof(Spirit));
-                }
-            }
-        }
-        public int Stamina
-        {
-            get { return stamina; }
-            set
-            {
-                if (stamina != value)
-                {
-                    stamina = value;
-                    OnPropertyChanged(nameof(Stamina));
-                }
-            }
-        }
+        [ObservableProperty]
+        private Dictionary<string, int> _statDictionary;
+        
 
         int selectedChar;
-        public int UnassignedPoints
-        {
-            get { return unassignedPoints; }
-            set
-            {
-                if (unassignedPoints != value)
-                {
-                    unassignedPoints = value;
-                    OnPropertyChanged(nameof(UnassignedPoints));
-                }
-            }
-        }
+       
 
         public ICommand ChangeStat { get; set; }
 
@@ -110,12 +51,8 @@ namespace Into_the_depths
 
         private readonly MainWindow parentWindow;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+
 
         public CharacterCreation(MainWindow w)
         {
@@ -123,100 +60,18 @@ namespace Into_the_depths
             DataContext = this;
             parentWindow = w;
             _saveID = GenerateSaveID();
-            characterList = new ObservableCollection<Character>();
+            CharacterList = new ObservableCollection<Character>();
             ChangeStat = new RelayCommand(IncrementOrDecrement);
+            StatDictionary = new Dictionary<string, int>
+            {
+                { "Strength", 12 },
+                { "Agility", 12 },
+                { "Intellect", 12 },
+                { "Spirit", 12 },
+                { "Stamina", 12 }
+            };
         }
 
-        #region changestats
-        private void StrPlus_Click(object sender, RoutedEventArgs e)
-        {
-
-            //if (Strength < 20 && UnassignedPoints != 0)
-            //{
-            //    Strength++;
-            //    UnassignedPoints--;
-            //}
-        }
-
-        private void StrMinus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Strength > 0)
-            //{
-            //    Strength--;
-            //    UnassignedPoints++;
-            //}
-        }
-
-        private void AgiPlus_Click(object sender, RoutedEventArgs e)
-        {
-
-            //if (Agility < 20 && UnassignedPoints != 0)
-            //{
-            //    Agility++;
-            //    UnassignedPoints--;
-            //}
-        }
-
-        private void AgiMinus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Agility > 0)
-            //{
-            //    Agility--;
-            //    UnassignedPoints++;
-            //}
-        }
-
-        private void IntPlus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Intellect < 20 && UnassignedPoints != 0)
-            //{
-            //    Intellect++;
-            //    UnassignedPoints--;
-            //}
-        }
-        private void IntMinus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Intellect > 0)
-            //{
-            //    Intellect--;
-            //    UnassignedPoints++;
-
-            //}
-        }
-        private void SpiPlus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Spirit < 20 && UnassignedPoints != 0)
-            //{
-            //    Spirit++;
-            //    UnassignedPoints--;
-            //}
-        }
-        private void SpiMinus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Spirit < 20)
-            //{
-            //    Spirit--;
-            //    UnassignedPoints++;
-            //}
-        }
-        private void StaPlus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Stamina < 20 && UnassignedPoints != 0)
-            //{
-            //    Stamina++;
-            //    UnassignedPoints--;
-            //}
-        }
-
-        private void StaMinus_Click(object sender, RoutedEventArgs e)
-        {
-            //if (Stamina < 20)
-            //{
-            //    Stamina--;
-            //    UnassignedPoints++;
-            //}
-        }
-        #endregion
 
         private void IncrementOrDecrement(object parameter)
         {
@@ -264,13 +119,13 @@ namespace Into_the_depths
         {
             if (CharName.Text != "")
             {
-                if (characterList.Count < 4)
+                if (CharacterList.Count < 4)
                 {
                     Type type = Type.GetType("Into_the_depths.Classes." + _classIsChecked); 
                     if (type != null)
                     {
                         var p = (Character)Activator.CreateInstance(type, CharName.Text, Strength, Agility, Intellect, Spirit, Stamina, 100, 100, 0, 100, 100, _saveID);
-                        characterList.Add(p);
+                        CharacterList.Add(p);
                         CharName.Text = "";
                         Strength = 12; Agility = 12; Intellect = 12; Spirit = 12; Stamina = 12; UnassignedPoints = 12;
                     }
@@ -293,19 +148,19 @@ namespace Into_the_depths
             if (_previouslyclickedBorder != null)
             {
                 Character c = _previouslyclickedBorder.DataContext as Character;
-                characterList.Remove(c);
+                CharacterList.Remove(c);
             }
             else MessageBox.Show("You need to select a character before you can delete it");
         }
 
         private void createParty_Click(object sender, RoutedEventArgs e)
         {
-            if (characterList.Count > 3)
+            if (CharacterList.Count > 3)
             {
-                SaveParty.SaveToFile(characterList);
-                parentWindow.ClosePage(characterList);
-                //characterList.Clear();
-                //characterList = SaveParty.LoadFromFile();
+                SaveParty.SaveToFile(CharacterList);
+                parentWindow.ClosePage(CharacterList);
+                //CharacterList.Clear();
+                //CharacterList = SaveParty.LoadFromFile();
                 //addCharToPartyGrid();
             }
             else MessageBox.Show("You need to add 4 characters to the party");

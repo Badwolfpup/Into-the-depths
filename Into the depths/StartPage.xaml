@@ -15,105 +15,65 @@
                 <GradientStop Color="#FFC0D0DC" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button Name="newGameButton" 
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Width="117" Height="42" Margin="74,96,0,0"
-                Click="newGameButton_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Image Source="pack://application:,,,/Into the depths;component/Image/buttonsky.png" Stretch="Fill"/>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Content>
-                <TextBlock Text="New game" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
-            </Button.Content>
-        </Button>
-
-        <Button Name="loadGameButton" 
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Width="117" Height="42" Margin="74,163,0,0"
-                Click="loadGameButton_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Image Source="pack://application:,,,/Into the depths;component/Image/buttongold.png" Stretch="Fill"/>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Content>
-                <TextBlock Text="Load game" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
-            </Button.Content>
-        </Button>
-
-        <Button Name="deleteSaveButton" 
-               HorizontalAlignment="Right" 
-               VerticalAlignment="Top"
-               Width="117" Height="42" Margin="0,96,34,0"
-                Click="deleteSaveButton_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Image Source="pack://application:,,,/Into the depths;component/Image/buttongold.png" Stretch="Fill"/>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Content>
-                <TextBlock Text="Delete save" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
-            </Button.Content>
-        </Button>
-        
-        <ScrollViewer Height="200" Width="505" Margin="207,96,0,0" Background="#FFECDFDF" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <ItemsControl ItemsSource="{Binding characterList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Border BorderBrush="Crimson" BorderThickness="3" CornerRadius="3" Margin="0,0,0,8" MouseDown="Border_MouseDown">
-                                <ItemsControl ItemsSource="{Binding}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="{Binding IconPath}" Height="20" Width="20" Stretch="UniformToFill"></Image>
-                                                <TextBlock>
-                                                    <Run Text="{Binding CharacterName, StringFormat=' Name: {0}'}"></Run>
-                                                    <Run Text="{Binding ClassName, StringFormat=' Class: {0}'}"></Run>
-                                                    <Run Text="{Binding Strength, StringFormat=' Str: {0}'}"></Run>
-                                                    <Run Text="{Binding Agility, StringFormat=' Str: {0}'}"></Run>
-                                                    <Run Text="{Binding Intellect, StringFormat=' Str: {0}'}"></Run>
-                                                    <Run Text="{Binding Spirit, StringFormat=' Str: {0}'}"></Run>
-                                                    <Run Text="{Binding Stamina, StringFormat=' Str: {0}'}"></Run>
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Border>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <!--<StackPanel>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="/Fonts/#Cinzel"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="Margin" Value="4"/>
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="30"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </Grid.Resources>
+            <UniformGrid Columns="2"
+                    HorizontalAlignment="Center"
+                    Width="600"
+                    Height="150">
+            <Button 
+                Foreground="#2B2A5E" 
+                BorderBrush="#4A4888" >
+                <Button.Content>
+                    <Viewbox Stretch="Uniform">
+                        
+                    <TextBlock>New Game</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#E8ECF6" Offset="0"/>
+                        <GradientStop Color="#B4C3E2" Offset="0.5"/>
+                        <GradientStop Color="#55559A" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
                 
-                --><!--<Border Height="auto" MinHeight="40" HorizontalAlignment="Stretch" Margin="5" BorderBrush="PaleVioletRed" BorderThickness="1" CornerRadius="4" VerticalAlignment="Top">
-                    <TextBlock Name="Save1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Empty save" FontSize="12"></TextBlock>
-                </Border>
-                <Border Height="auto" MinHeight="40" HorizontalAlignment="Stretch" Margin="5" BorderBrush="PaleVioletRed" BorderThickness="1" CornerRadius="4" VerticalAlignment="Top">
-                    <TextBlock Name="Save2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Empty save" FontSize="12"></TextBlock>
-                </Border>
-                <Border Height="auto" MinHeight="40" HorizontalAlignment="Stretch" Margin="5" BorderBrush="PaleVioletRed" BorderThickness="1" CornerRadius="4" VerticalAlignment="Top">
-                    <TextBlock Name="Save3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Empty save" FontSize="12"></TextBlock>
-                </Border>
-                <Border Height="auto" MinHeight="40" HorizontalAlignment="Stretch" Margin="5" BorderBrush="PaleVioletRed" BorderThickness="1" CornerRadius="4" VerticalAlignment="Top">
-                    <TextBlock Name="Save4" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Empty save" FontSize="12"></TextBlock>
-                </Border>--><!--
-            </StackPanel>-->
-        </ScrollViewer>
-        <!--<TextBlock Name="testar" Text="testar" Margin="100,230,0,0"></TextBlock>-->
+            </Button>
+            <Button 
+                Foreground="#4A1A05" 
+                BorderBrush="#8A2E0A"
+                >
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FBC531" Offset="0"/>
+                        <GradientStop Color="#F08A2E" Offset="0.45"/>
+                        <GradientStop Color="#9A2E0C" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Viewbox Stretch="Uniform">
+                        
+                    <TextBlock>Load Game</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+        </UniformGrid>
+
+
+
     </Grid>
 </Page>

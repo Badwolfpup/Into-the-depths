@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /Into the depths/StartPage.xaml
 /Into the depths/StartPage.xaml.cs
+
+# Claude Code session exports
+Claude-Sessions/

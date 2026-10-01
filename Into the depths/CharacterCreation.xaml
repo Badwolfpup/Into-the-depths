@@ -9,206 +9,69 @@
       d:DesignHeight="495" d:DesignWidth="880"
       Title="CharacterCreation">
 
-    <Canvas Background="#FF9BB4C1">
-        <StackPanel Width="auto" Height="auto" Canvas.Left="121" Canvas.Top="80">
-            <TextBlock><Run Text="Choose class:" FontSize="14"/></TextBlock>
-            <RadioButton Name="RBPaladin" Content="Paladin" FontSize="14" IsChecked="True" Checked="Class_checked"/>
-            <RadioButton Name="RBWarrior" Content="Warrior" FontSize="14" Checked="Class_checked"/>
-            <RadioButton Name="RBRogue" Content="Rogue" FontSize="14" Checked="Class_checked"/>
-            <RadioButton Name="RBRanger" Content="Ranger" FontSize="14" Checked="Class_checked"/>
-            <RadioButton Name="RBMage" Content="Mage" FontSize="14" Checked="Class_checked"/>
-            <RadioButton Name="RBPriest" Content="Priest" FontSize="14" Checked="Class_checked"/>
-        </StackPanel>
-        <StackPanel Height="auto" Width="auto" Canvas.Left="255" Canvas.Top="79" Orientation="Horizontal">
+    <Grid Background="#FF9BB4C1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            
+       
+        <StackPanel Height="auto" Width="auto" Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
             <TextBlock FontSize="14">Name:</TextBlock>
             <TextBox Name="CharName" Width="100" Margin="10,0,0,0" FontSize="14"></TextBox>
         </StackPanel>
-        <Grid Canvas.Left="255" Canvas.Top="102">
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="16"></Setter>
-                </Style>
-            </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <!--#region Statpoints -->
+        <ComboBox Grid.Column="0">
+            <ComboBoxItem>Paladin</ComboBoxItem>
+            <ComboBoxItem>Warrior</ComboBoxItem>
+            <ComboBoxItem>Rogue</ComboBoxItem>
+            <ComboBoxItem>Ranger</ComboBoxItem>
+            <ComboBoxItem>Mage</ComboBoxItem>
+            <ComboBoxItem>Priest</ComboBoxItem>
+        </ComboBox>
+        <ItemsControl ItemsSource="{Binding StatDictionary}" Grid.Column="0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Key}" Margin="0,0,10,0"></TextBlock>
+                        <Button Grid.Column="1" Content="+" Margin="0,0,10,0" Width="20" Height="20"
+                                Command="{Binding DataContext.ChangeStat, RelativeSource={RelativeSource AncestorType=Page}}">
+                            <Button.CommandParameter>
+                                <x:Array Type="{x:Type System:String}">
+                                    <System:String>{Binding Key}</System:String>
+                                    <System:String>true</System:String>
+                                </x:Array>
+                            </Button.CommandParameter>
+                        </Button>
+                        <TextBlock Grid.Column="2" Text="{Binding Value}" Margin="0,0,10,0"></TextBlock>
+                        <Button Grid.Column="3" Content="-" Margin="0,0,10,0" Width="20" Height="20"
+                                Command="{Binding DataContext.ChangeStat, RelativeSource={RelativeSource AncestorType=Page}}">
+                            <Button.CommandParameter>
+                                <x:Array Type="{x:Type System:String}">
+                                    <System:String>{Binding Key}</System:String>
+                                    <System:String>false</System:String>
+                                </x:Array>
+                            </Button.CommandParameter>
+                        </Button> 
 
-            <!--Strength-->
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">Strength</TextBlock>
-            <Button 
-                Name="StrPlus" 
-                Content="+"
-                Click="StrPlus_Click"              
-                Grid.Column="1" Grid.Row="0" Margin="0,0,10,0" Width="20" Height="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Strength</System:String>
-                        <System:String>true</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <TextBlock 
-                Name="StrValue" 
-                Grid.Column="2" 
-                Grid.Row="0" 
-                Margin="0,0,10,0"
-                Text="{Binding Strength}"></TextBlock>
-            <Button 
-                Name="StrMinus" 
-                Content="-"
-                Click="StrMinus_Click"
-                Grid.Column="3" Grid.Row="0" Margin="0,0,10,0" Height="20" Width="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Strength</System:String>
-                        <System:String>false</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-
-            <!--Agility-->
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">Agility</TextBlock>
-            <Button 
-                Name="AgiPlus" 
-                Content="+"
-                Click="AgiPlus_Click"
-                Grid.Column="1" Grid.Row="1" Margin="0,0,10,0" Width="20" Height="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Agility</System:String>
-                        <System:String>true</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <TextBlock Name="AgiValue" Grid.Column="2" Grid.Row="1" Margin="0,0,10,0" Text="{Binding Agility}"></TextBlock>
-            <Button 
-                Name="AgiMinus" 
-                Content="-"
-                Click="AgiMinus_Click"
-                Grid.Column="3" Grid.Row="1" Margin="0,0,10,0" Height="20" Width="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Agility</System:String>
-                        <System:String>false</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-
-            <!--Intellect-->
-            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">Intellect</TextBlock>
-            <Button 
-                Name="IntPlus" 
-                Content="+"
-                Click="IntPlus_Click"
-                Grid.Column="1" Grid.Row="2" Margin="0,0,10,0" Width="20" Height="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Intellect</System:String>
-                        <System:String>true</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <TextBlock Name="IntValue" Grid.Column="2" Grid.Row="2" Margin="0,0,10,0" Text="{Binding Intellect}"></TextBlock>
-            <Button 
-                Name="IntMinus" 
-                Content="-"
-                Click="IntMinus_Click"
-                Grid.Column="3" Grid.Row="2" Margin="0,0,10,0" Height="20" Width="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Intellect</System:String>
-                        <System:String>false</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-
-            <!--Spirit-->
-            <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,0,10,0">Spirit</TextBlock>
-            <Button 
-                Name="SpiPlus" 
-                Content="+"
-                Click="SpiPlus_Click"
-                Grid.Column="1" Grid.Row="3" Margin="0,0,10,0" Width="20" Height="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Spirit</System:String>
-                        <System:String>true</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <TextBlock Name="SpiValue" Grid.Column="2" Grid.Row="3" Margin="0,0,10,0" Text="{Binding Spirit}"></TextBlock>
-            <Button 
-                Name="SpiMinus" 
-                Content="-"
-                Click="SpiMinus_Click"
-                Grid.Column="3" Grid.Row="3" Margin="0,0,10,0" Height="20" Width="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Spirit</System:String>
-                        <System:String>false</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-
-            <!--Stamina-->
-            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,10,0">Stamina</TextBlock>
-            <Button 
-                Name="StaPlus" 
-                Content="+"
-                Click="StaPlus_Click"
-                Grid.Column="1" Grid.Row="4" Margin="0,0,10,0" Width="20" Height="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Stamina</System:String>
-                        <System:String>true</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <TextBlock Name="StaValue" Grid.Column="2" Grid.Row="4" Margin="0,0,10,0" Text="{Binding Stamina}"></TextBlock>
-            <Button 
-                Name="StaMinus" 
-                Content="-"
-                Click="StaMinus_Click"
-                Grid.Column="3" Grid.Row="4" Margin="0,0,10,0" Height="20" Width="20"
-                Command="{Binding ChangeStat}">
-                <Button.CommandParameter>
-                    <x:Array Type="{x:Type System:String}">
-                        <System:String>Stamina</System:String>
-                        <System:String>false</System:String>
-                    </x:Array>
-                </Button.CommandParameter>
-            </Button>
-            <!--#endregion-->
-            <StackPanel Orientation="Horizontal" Canvas.Left="255" Canvas.Top="207" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4">
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <TextBlock ><Run Text="Unassigned points:"/></TextBlock>
                 <TextBlock Name="unassignedText" Margin="5,0,0,0" Text="{Binding UnassignedPoints}"></TextBlock>
             </StackPanel>
-        </Grid>
-
-        <Button Name="CreateChar" 
-               Canvas.Left="276" 
-               Canvas.Top="237" 
+        </StackPanel>
+        <!--   <Button Name="CreateChar" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top"
                Click="CreateChar_Click" Width="117" Height="42">
@@ -225,7 +88,7 @@
             </Button.Content>
         </Button>
 
-        <StackPanel Name="PartyGrid" Canvas.Left ="414" Canvas.Top="79">
+        <StackPanel Name="PartyGrid" >
         </StackPanel>
         <Button Canvas.Left="655" Canvas.Top="307" Click="createParty_Click" Width="117" Height="42" Name="createParty" Padding="5">
             <Button.Template>
@@ -254,7 +117,7 @@
                 <TextBlock Text="Delete char" FontSize="15" FontWeight="Bold" Margin="0,0,0,3"/>
             </Button.Content>
         </Button>
-        <ScrollViewer Width="332" Height="230" Canvas.Left="440" Canvas.Top="77" BorderBrush="Azure" BorderThickness="4" Background="#FFA6D2F9" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer Width="332" Height="230" Grid.Column="2" BorderBrush="Azure" BorderThickness="4" Background="#FFA6D2F9" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
             <ItemsControl ItemsSource="{Binding characterList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -280,35 +143,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <!--<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFA6D2F9">
-    <Border Name="borderChar1" Height="50" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" MouseLeftButtonUp="borderChar1_MouseLeftButtonUp" Visibility="Hidden">
-        <Grid>
-            <Image Source="/Into the depths;component/Image/character frame.jpg" Height="50" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Fill"/>
-            <Image Name="ikon1"  Height="33" Margin="0,0,190,1"></Image>
-            <TextBlock x:Name="char1Text" Margin="32,0,0,3" Background="#FFDAADAD" Height="30" Width="190"></TextBlock>
-        </Grid>
-    </Border>
-    <Border Name="borderChar2" Height="50" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" MouseLeftButtonUp="borderChar2_MouseLeftButtonUp" Visibility="Hidden">
-        <Grid>
-            <Image Source="/Into the depths;component/Image/character frame.jpg" Height="50" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Fill"/>
-            <Image Name="ikon2"  Height="33" Margin="0,0,190,1"></Image>
-            <TextBlock x:Name="char2Text" Margin="32,0,0,3" Background="#FFDAADAD" Height="30" Width="190"></TextBlock>
-        </Grid>
-    </Border>
-    <Border Name="borderChar3" Height="50" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3"  MouseLeftButtonUp="borderChar3_MouseLeftButtonUp" Visibility="Hidden">
-        <Grid>
-            <Image Source="/Into the depths;component/Image/character frame.jpg" Height="50" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Fill"/>
-            <Image Name="ikon3"  Height="33" Margin="0,0,190,1"></Image>
-            <TextBlock x:Name="char3Text" Margin="32,0,0,3" Background="#FFDAADAD" Height="30" Width="190"></TextBlock>
-        </Grid>
-    </Border>
-    <Border Name="borderChar4" Height="50" HorizontalAlignment="Stretch" BorderBrush="Coral" BorderThickness="2" Margin="0,3,0,3" MouseLeftButtonUp="borderChar4_MouseLeftButtonUp" Visibility="Hidden">
-        <Grid>
-            <Image Source="/Into the depths;component/Image/character frame.jpg" Height="50" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Fill"/>
-            <Image Name="ikon4"  Height="33" Margin="0,0,190,1"></Image>
-            <TextBlock x:Name="char4Text" Margin="32,0,0,3" Background="#FFDAADAD" Height="30" Width="190"></TextBlock>
-        </Grid>
-    </Border>
-</StackPanel>-->
-    </Canvas>
+-->
+    </Grid>
 </Page>
