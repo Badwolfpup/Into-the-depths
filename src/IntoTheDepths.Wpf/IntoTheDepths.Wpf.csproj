@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- UI: views, view models, and the composition root (App.xaml.cs). -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntoTheDepths.Core\IntoTheDepths.Core.csproj" />
+    <ProjectReference Include="..\IntoTheDepths.Data\IntoTheDepths.Data.csproj" />
+  </ItemGroup>
+
+</Project>

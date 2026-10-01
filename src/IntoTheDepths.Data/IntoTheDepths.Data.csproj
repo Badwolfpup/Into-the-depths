@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Persistence: SQLite saves via EF Core, JSON content loading. Implements interfaces defined in Core. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntoTheDepths.Core\IntoTheDepths.Core.csproj" />
+  </ItemGroup>
+
+</Project>

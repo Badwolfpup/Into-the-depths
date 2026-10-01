@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/IntoTheDepths.Core/IntoTheDepths.Core.csproj" />
+    <Project Path="src/IntoTheDepths.Data/IntoTheDepths.Data.csproj" />
+    <Project Path="src/IntoTheDepths.Wpf/IntoTheDepths.Wpf.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/IntoTheDepths.Tests/IntoTheDepths.Tests.csproj" />
+  </Folder>
+</Solution>

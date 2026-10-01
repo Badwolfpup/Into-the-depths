@@ -1,39 +1,31 @@
 # Into the Depths
 
-A WPF dungeon crawler RPG with character creation, multiple classes, an equipment system, and procedurally generated dungeons.
+A turn-based dungeon crawler RPG for Windows, built with C#, WPF and .NET 10. Lead a party of four heroes through a procedurally generated labyrinth.
 
-## Technologies
+Currently being rebuilt from scratch. The original prototype is available at the `legacy-prototype` tag.
 
-- C#, WPF (XAML), .NET, JSON serialization
+## Tech
 
-## Features
+- C# / WPF / .NET 10
+- MVVM with CommunityToolkit.Mvvm, dependency injection via the .NET Generic Host
+- SQLite via EF Core for save games; JSON for game content
+- xUnit v3 + FluentAssertions
 
-- **6 character classes** - Warrior, Mage, Paladin, Priest, Ranger, Rogue with unique stats
-- **Character creation** screen with class selection and icons
-- **Equipment system** with 10 slots (Head, Shoulder, Chest, Arm, Hand, Legs, Feet, MainHand, OffHand, Neck)
-- **Combat system** with turn-based battles
-- **Labyrinth generation** with room events (chests, enemies)
-- **Save/Load** system with JSON serialization
-- **Custom UI** with themed buttons and backgrounds
-
-## Project Structure
+## Structure
 
 ```
-Into the depths/
-+-- Classes/              # Character classes (Character, Warrior, Mage, Paladin, Priest, Ranger, Rogue)
-+-- Items/
-|   +-- Equipment/        # 10 equipment slot types
-+-- MonsterClasses/       # Monster base class and types
-+-- Rooms/                # Room and event system
-+-- CharacterCreation.xaml  # Character creation screen
-+-- StartPage.xaml        # Start menu
-+-- MainWindow.xaml       # Main game UI
-+-- Combat.cs             # Combat logic
-+-- Labyrinth.cs          # Dungeon generation
-+-- SaveParty.cs          # JSON save system
-+-- Image/                # UI graphics and class icons
+src/IntoTheDepths.Core    game rules and models
+src/IntoTheDepths.Data    saves and content loading
+src/IntoTheDepths.Wpf     user interface
+tests/IntoTheDepths.Tests tests
+assets/                   art and fonts
 ```
 
-## How to Run
+## Build and Run
 
-Open `Into the depths.sln` in Visual Studio and run the project.
+Requires the .NET 10 SDK (or Visual Studio 2026).
+
+```bash
+dotnet build IntoTheDepths.slnx
+dotnet run --project src/IntoTheDepths.Wpf
+```

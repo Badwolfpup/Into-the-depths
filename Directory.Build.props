@@ -1,0 +1,7 @@
+<Project>
+  <!-- Applies to every project in the repo. Project files only add what's specific to them. -->
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+</Project>
